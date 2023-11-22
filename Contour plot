@@ -1,0 +1,27 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('/Users/tsengchunsheng/Library/Mobile Documents/com~apple~CloudDocs/Python study/Example/xyz.csv')
+print(df.head(5))
+
+# Create a filled contour plot with a gradient color
+# 樣式選擇：'viridis', 'coolwarm','plasma', 'inferno', 'magma', 'cividis', 'twilight', 'seismic' , 'RdYlBu'
+contour_plot = plt.tricontourf(df['x'], df['y'], df['z'], cmap='plasma', levels=100)
+
+# Add colorbar
+colorbar = plt.colorbar(contour_plot, label='Z intensity')
+# Add and customize labels and title
+plt.xlabel('X random', fontsize=12, fontweight='bold', color='blue')
+plt.ylabel('Y random', fontsize=12, fontweight='bold', color='blue')
+plt.title('Contour Plot of XYZ Data', fontsize=14, fontweight='bold', color='purple')
+# Customize tick labels and tick size
+plt.xticks(fontsize=10, color='green')
+plt.yticks(fontsize=10, color='green')
+# Customize colorbar tick labels and tick size
+colorbar.ax.tick_params(labelsize=8, color='gray')
+# Customize contour labels
+plt.clabel(contour_plot, inline=True, fontsize=8, colors='red')
+# Add grid
+plt.grid(True, linestyle='--', linewidth=0.5, alpha=0.7)
+
+plt.show()
