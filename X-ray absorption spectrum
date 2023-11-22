@@ -1,0 +1,48 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('/Users/tsengchunsheng/Library/Mobile Documents/com~apple~CloudDocs/Python study/Example/XAS_Cu.csv')
+print(df.head(5))
+# plt.plot(df['Energy(eV)'], df['If']/df['I0'], label='Cu sample', lw=2.5, color='purple', )
+# plt.xlabel('Energy (eV)', fontdict={'fontname': 'Times new roman', 'fontsize': 16})
+# plt.ylabel('intensity', fontdict={'fontname': 'Times new roman', 'fontsize': 16})
+# plt.title('Cu K-edge spectrum', fontdict={'fontname': 'Times new roman', 'fontsize': 20})
+# plt.xlim(8900, 9200)
+
+fig, ax = plt.subplots()
+line = ax.plot(df['Energy(eV)'], df['If']/df['I0'], label='Cu sample')[0]
+
+# Customize edge color and weight of the line
+line.set(color='gray', linewidth=2.5)
+
+# Customize tick properties
+ax.tick_params(axis='both', which='major', labelsize=12, color='purple', width=1.5)
+# Customize tick position
+ax.xaxis.set_tick_params(which='both', direction='out', length=4)
+ax.yaxis.set_tick_params(which='both', direction='inout', length=4)
+
+# Customize tick label rotation
+ax.tick_params(axis='both', rotation=45)
+# Customize tick label padding (座標值與標線距離)
+ax.tick_params(axis='both', pad=4)
+
+# Customize axis edge color
+ax.spines['bottom'].set_color('blue')
+ax.spines['top'].set_color('blue')
+ax.spines['left'].set_color('blue')
+ax.spines['right'].set_color('blue')
+# Customize axis edge weight
+ax.spines['bottom'].set_linewidth(1.5)
+ax.spines['top'].set_linewidth(1.5)
+ax.spines['left'].set_linewidth(1.5)
+ax.spines['right'].set_linewidth(1.5)
+
+# Add and customize x, y labels and title
+ax.set_xlabel('Energy (eV)', fontname='Times new roman', fontsize=14, fontweight='bold', color='red')
+ax.set_ylabel('intensity', fontname='Times new roman', fontsize=14, fontweight='bold', color='red')
+ax.set_title('Cu K-edge XANES', fontname='Times new roman', fontsize=16, fontweight='bold', color='Orange')
+plt.xlim(8900, 9200)
+
+ax.legend()
+plt.show()
+
